@@ -11,6 +11,10 @@ public class Cliente {
     private String domicilio;
     private int celular;
     private String email;
+    
+    public Cliente(String rut){
+        this.rut = rut;
+    }
 
     public Cliente(String rut, String nombre, String domicilio, int celular, String email) {
         this.rut = rut;
