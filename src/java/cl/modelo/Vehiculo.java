@@ -14,6 +14,15 @@ public class Vehiculo {
     private int anioFabricacion;
     private String estado;
     
+        public Vehiculo(String patente, String marca, String modelo, String color, int anioFabricacion, String estado) {
+        this.patente = patente;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.color = color;
+        this.anioFabricacion = anioFabricacion;
+        this.estado = estado;
+    }
+    
     public Vehiculo(){
         
     }

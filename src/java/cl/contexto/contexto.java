@@ -1,11 +1,11 @@
 
 package cl.contexto;
 
-import cl.modelo.Usuario;
+import cl.modelo.Vehiculo;
 import java.util.List;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
+import java.util.ArrayList;
 /**
  *
  * @author Hector
@@ -16,7 +16,9 @@ public class contexto implements ServletContextListener{
     @Override
     public void contextInitialized(ServletContextEvent sce) {
     
-        List<Usuario> listaUsuarios;
+        List<Vehiculo> listaVehiculos;
+        listaVehiculos = new ArrayList();
+        
         
     }
 
