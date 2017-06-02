@@ -2,6 +2,8 @@
 package cl.contexto;
 
 import cl.modelo.Vehiculo;
+import cl.modelo.Cliente;
+import cl.modelo.Usuario;
 import java.util.List;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -25,6 +27,18 @@ public class contexto implements ServletContextListener{
         listaVehiculos.add(new Vehiculo("MN-CT-59", "Renault", "Clio", "Blanco", 2013, "DISPONIBLE"));
         listaVehiculos.add(new Vehiculo("UI-UI-09", "Nissan", "V16", "Verde", 2000, "DISPONIBLE"));
         listaVehiculos.add(new Vehiculo("RT-IL-89", "Volkswagen", "Saveiro", "Negro", 2017, "DISPONIBLE"));
+        
+        //Se crea una lista tipo arraylist de cliente, la cual almacenará los datos de Clientes e inicializará para el uso del Sistema
+        List<Cliente> listaClientes;
+        listaClientes = new ArrayList<>();
+        //Se añade a la lista cada cliente segun sus parametros Rut, Nombre, Domicilio, Celular, Email
+        listaClientes.add(new Cliente("19.123.431-3", "José Orellana", "Av. Circunvalación N 32", 98283493, "jose_o@gmail.com"));
+        listaClientes.add(new Cliente("19.002.343-4","Nicolás Acosta", "4 Ote. 2 Sur N 22", 74321232, "nico.acosta@gmail.com"));
+        listaClientes.add(new Cliente("18.234.123-4", "Miguel Torres", "3 Nte. 23 Sur N 32", 99898998, "miguel.torres@gmail.com"));
+        
+        List<Usuario> listaUsuarios;
+        listaUsuarios = new ArrayList<>();
+        listaUsuarios.add(new Usuario("admin", "admin", ""));
                                          
     }
 
