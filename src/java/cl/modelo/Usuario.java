@@ -10,12 +10,17 @@ public class Usuario {
 
     }
     
-    public Usuario(String login,String password,String rol){
-        this.login=login;
-        this.password=password;
-        this.rol=rol;
+    public Usuario(String login, String password){
+        this.login = login;
+        this.password = password;
     }
 
+    public Usuario(String login, String password, String rol){
+        this.login = login;
+        this.password = password;
+        this.rol = rol;
+    }
+    
     public String getLogin() {
         return login;
     }

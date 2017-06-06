@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>errores</servlet-name>
+        <servlet-class>cl.vista.errores</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>validaus</servlet-name>
+        <servlet-class>cl.controlador.validaus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>menu</servlet-name>
+        <servlet-class>cl.vista.menu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cerrar</servlet-name>
+        <servlet-class>cl.controlador.cerrar</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>errores</servlet-name>
+        <url-pattern>/errores.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validaus</servlet-name>
+        <url-pattern>/validaus.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>menu</servlet-name>
+        <url-pattern>/menu.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cerrar</servlet-name>
+        <url-pattern>/cerrar.do</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

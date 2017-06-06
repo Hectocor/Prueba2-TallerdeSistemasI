@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import java.util.ArrayList;
+import javax.servlet.ServletContext;
 /**
  *
  * @author Hector
@@ -38,7 +39,14 @@ public class contexto implements ServletContextListener{
         
         List<Usuario> listaUsuarios;
         listaUsuarios = new ArrayList<>();
-        listaUsuarios.add(new Usuario("admin", "admin", ""));
+        listaUsuarios.add(new Usuario("admin", "admin", "ADMINISTRADOR"));
+        listaUsuarios.add(new Usuario("hector", "1234", "EMPLEADO"));
+        
+        ServletContext context = sce.getServletContext();
+        
+        context.setAttribute("listaVehiculos", listaVehiculos);
+        context.setAttribute("listaClientes", listaClientes);
+        context.setAttribute("listaUsuarios", listaUsuarios);
                                          
     }
 
