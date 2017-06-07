@@ -36,6 +36,18 @@
         <servlet-name>eliminaveh</servlet-name>
         <servlet-class>cl.vista.eliminaveh</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>valeliveh</servlet-name>
+        <servlet-class>cl.controlador.valeliveh</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>buscarveh</servlet-name>
+        <servlet-class>cl.vista.buscarveh</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>valvehiculo</servlet-name>
+        <servlet-class>cl.vista.valvehiculo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>errores</servlet-name>
         <url-pattern>/errores.view</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>eliminaveh</servlet-name>
         <url-pattern>/eliminaveh.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>valeliveh</servlet-name>
+        <url-pattern>/valeliveh.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buscarveh</servlet-name>
+        <url-pattern>/buscarveh.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>valvehiculo</servlet-name>
+        <url-pattern>/valvehiculo.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

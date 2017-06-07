@@ -20,7 +20,7 @@ public class eliminaveh extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession sesionOK = request.getSession();
-        Usuario usuario = (Usuario) sesionOK.getAttribute("usuario");
+        Usuario usuario = (Usuario) sesionOK.getAttribute("USUARIO");
         Vehiculo vehiculo = (Vehiculo) sesionOK.getAttribute("Vehiculo");
         String Patente = request.getParameter("patente");
         List<Vehiculo> listaVehiculos = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");

@@ -48,17 +48,24 @@ public class ingarriendo extends HttpServlet {
                 out.println("<tr><td>Código</td><td><input type='text' name='codigo' value='" + codigo + "'></td>");
                 out.println("<tr><td>Patente</td><td><select name='patenteV'>");
                 ArrayList<Vehiculo> listaVehiculos = (ArrayList<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
+                
+                
                 for (Vehiculo aux : listaVehiculos){
                     out.println("<option value=>"+ aux.getPatente()+"</option>");
                 }
+                
+                
                 out.println("</select></td>");
                 out.println("<tr><td>Rut Cliente</td><td><select name='rutCli'>");
                
                 ArrayList<Cliente> listaClientes = (ArrayList<Cliente>) getServletContext().getAttribute("listaClientes");
-                out.println("<option ");
+                
+                
                 for (Cliente aux : listaClientes){
                     out.println("<option value=>"+ aux.getRut()+"</option>");
                 }
+                
+                
                 out.println("</select></td>");
                 out.println("<tr><td>Fecha</td><td><input type='text' name='fecha' value='" + fecha + "'></td>");
                 out.println("<tr><td>Cantidad de dias</td><td><input type='text' name='dias' value='" + strdias + "'></td>");
@@ -66,7 +73,7 @@ public class ingarriendo extends HttpServlet {
                 out.println("<tr><td colspan='2' align='right'><input type='submit' value='Agregar'></td>");
                 out.println("</table>");
                 
-                if (!errores2.isEmpty()){
+                if (errores2.isEmpty()){
                     
                     out.println("<table>");
                     for (Object errores : errores2) {

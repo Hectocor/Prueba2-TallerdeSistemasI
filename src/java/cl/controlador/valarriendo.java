@@ -33,7 +33,7 @@ public class valarriendo extends HttpServlet {
         String strvalorDia = request.getParameter("valorDia");
         int dias = 0;
         int valorDia = 0;
-        
+
         if(codigo.isEmpty()){
             errores2.add("Falta ingresar Codigo");
         }
@@ -52,6 +52,7 @@ public class valarriendo extends HttpServlet {
         } catch (NumberFormatException e) {
            errores2.add("ERROR, Solo ingresar datos numéricos para cantidad de días");
         }
+         
         try {
             valorDia = Integer.parseInt(strvalorDia);
         } catch (NumberFormatException e) {
@@ -65,13 +66,15 @@ public class valarriendo extends HttpServlet {
             List<Arriendo> listaArriendos = (List<Arriendo>) getServletContext().getAttribute("listaArriendos");
             listaArriendos.add(arriendo);
             //List<Vehiculo> listaVehiculos = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
-
+            
             String msj = "Arriendo añadido correctamente";
             System.out.println(msj);
             request.setAttribute("msj", msj);
             RequestDispatcher rd = request.getRequestDispatcher("ingarriendo.view");
             rd.forward(request, response);
+       
         }else{
+            
             //Dejar en al ambito de solicitud los errores
             request.setAttribute("errores2", errores2);
             String msj = "Se han encontrado los siguientes errores: ";
