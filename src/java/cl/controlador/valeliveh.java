@@ -4,7 +4,6 @@ package cl.controlador;
 import cl.modelo.Usuario;
 import cl.modelo.Vehiculo;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,18 +29,22 @@ public class valeliveh extends HttpServlet {
         Usuario usuario = (Usuario) sesionOK.getAttribute("USUARIO");
         List<Vehiculo> listaVehiculos = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
         
-        Iterator<Vehiculo> vehiculoIterator = listaVehiculos.iterator();
-        
-        while (vehiculoIterator.hasNext()) {;
-            Vehiculo autito = vehiculoIterator.next();
-
-            if (autito.getPatente().equals(patenteAEliminar)) {
-                vehiculoIterator.remove();
+         for (int i = 0; i < listaVehiculos.size(); i++) {
+                    Vehiculo aux = (Vehiculo) listaVehiculos.get(i);
+                    if (aux.getPatente().equals(patenteAEliminar)) {
+                        eliminaIndice(listaVehiculos, i);
+                    } 
             }
-        }
-        
+         
+         for(Vehiculo vehiculo : listaVehiculos){
+             System.out.println(vehiculo.getModelo());
+         }
     }
 
+    public void eliminaIndice(List<Vehiculo> vehiculo, int index){
+         vehiculo.remove(index);
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -48,6 +48,10 @@
         <servlet-name>valvehiculo</servlet-name>
         <servlet-class>cl.vista.valvehiculo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>calcmonto</servlet-name>
+        <servlet-class>cl.controlador.calcmonto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>errores</servlet-name>
         <url-pattern>/errores.view</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>valvehiculo</servlet-name>
         <url-pattern>/valvehiculo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>calcmonto</servlet-name>
+        <url-pattern>/calcmonto.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

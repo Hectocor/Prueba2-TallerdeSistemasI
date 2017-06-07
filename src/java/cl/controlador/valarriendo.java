@@ -65,7 +65,27 @@ public class valarriendo extends HttpServlet {
 
             List<Arriendo> listaArriendos = (List<Arriendo>) getServletContext().getAttribute("listaArriendos");
             listaArriendos.add(arriendo);
-            //List<Vehiculo> listaVehiculos = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
+            //se deja en ambito de contexto la lista de arriendos
+            getServletContext().setAttribute("listaArriendos", listaArriendos);
+            
+            List<Vehiculo> listaVehiculos = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
+            
+            for (int i = 0; i < listaVehiculos.size(); i++) {
+                    Vehiculo aux = (Vehiculo) listaVehiculos.get(i);
+                    if (aux.getPatente().equals(patenteV)) {
+                        
+                        aux.setPatente(aux.getPatente());
+                        aux.setEstado("NO DISPONIBLE");
+                        aux.setColor(aux.getColor());
+                        aux.setAnioFabricacion(aux.getAnioFabricacion());
+                        aux.setMarca(aux.getMarca());
+                        aux.setModelo(aux.getModelo());
+
+                        listaVehiculos.set(i, aux);
+                    }
+            }
+            
+           getServletContext().setAttribute("listaVehiculos", listaVehiculos);
             
             String msj = "Arriendo añadido correctamente";
             System.out.println(msj);

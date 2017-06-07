@@ -19,7 +19,7 @@ public class valvehiculo extends HttpServlet {
         String Marca = request.getParameter("marca");
         String Modelo = request.getParameter("modelo");
         String Color = request.getParameter("color");
-        String Ano = request.getParameter("anioFabricacion");
+        String Ano = request.getParameter("anio");
         String Estado = request.getParameter("estado");
         ArrayList errores = new ArrayList();
         if(Patente.isEmpty()){
@@ -43,7 +43,7 @@ public class valvehiculo extends HttpServlet {
         if(errores.isEmpty()){
             String msg = "Vehiculo ingresado correctamente";
             request.setAttribute("msg", msg);
-            RequestDispatcher rd = request.getRequestDispatcher("valvehiculo.do");
+            RequestDispatcher rd = request.getRequestDispatcher("ingvehiculo.view");
             rd.forward(request, response);
         }else{
             request.setAttribute("errores", errores);
