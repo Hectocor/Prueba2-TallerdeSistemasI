@@ -1,18 +1,20 @@
-
 package cl.contexto;
 
 import cl.modelo.Vehiculo;
 import cl.modelo.Cliente;
 import cl.modelo.Usuario;
+import cl.modelo.Arriendo;
 import java.util.List;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import java.util.ArrayList;
 import javax.servlet.ServletContext;
+
 /**
  *
  * @author Hector
  */
+
 @javax.servlet.annotation.WebListener
 public class contexto implements ServletContextListener{
 
@@ -42,11 +44,15 @@ public class contexto implements ServletContextListener{
         listaUsuarios.add(new Usuario("admin", "admin", "ADMINISTRADOR"));
         listaUsuarios.add(new Usuario("hector", "1234", "EMPLEADO"));
         
+        List<Arriendo> listaArriendos;
+        listaArriendos = new ArrayList<>();
+        
         ServletContext context = sce.getServletContext();
         
         context.setAttribute("listaVehiculos", listaVehiculos);
         context.setAttribute("listaClientes", listaClientes);
         context.setAttribute("listaUsuarios", listaUsuarios);
+        context.setAttribute("listaArriendos", listaArriendos);
                                          
     }
 

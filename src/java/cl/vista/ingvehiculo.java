@@ -1,4 +1,5 @@
 package cl.vista;
+
 import cl.modelo.Usuario;
 import cl.modelo.Vehiculo;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class ingvehiculo extends HttpServlet {
         
         HttpSession sesionOK = request.getSession();
         
-         Usuario usuario = (Usuario) sesionOK.getAttribute("usuario");
+         Usuario usuario = (Usuario) sesionOK.getAttribute("USUARIO");
         Vehiculo vehiculo = (Vehiculo) sesionOK.getAttribute("Vehiculo");
         ArrayList errores = (ArrayList) request.getAttribute("errores");
         
@@ -53,6 +54,7 @@ public class ingvehiculo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try (PrintWriter out = response.getWriter()) {
+            
            if (usuario == null) {
                 out.println("<center>");
                 out.println("<h1> Inicie sesion para ver la pagina</h1>");
@@ -100,15 +102,7 @@ public class ingvehiculo extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

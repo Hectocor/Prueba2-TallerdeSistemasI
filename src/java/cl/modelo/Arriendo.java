@@ -17,6 +17,16 @@ public class Arriendo {
         
     }
 
+    public Arriendo(String codigo, String patenteV, String rutCli, String fecha, int dias, int valorDia){
+        this.codigo = codigo;
+        this.patenteV = patenteV;
+        this.rutCli = rutCli;
+        this.fecha = fecha;
+        this.dias = dias;
+        this.valorDia = valorDia;
+    }
+    
+    
     public String getCodigo() {
         return codigo;
     }

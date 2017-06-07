@@ -16,6 +16,26 @@
         <servlet-name>cerrar</servlet-name>
         <servlet-class>cl.controlador.cerrar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ingarriendo</servlet-name>
+        <servlet-class>cl.vista.ingarriendo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>vervehiculosdisp</servlet-name>
+        <servlet-class>cl.vista.vervehiculosdisp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ingvehiculo</servlet-name>
+        <servlet-class>cl.vista.ingvehiculo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>valarriendo</servlet-name>
+        <servlet-class>cl.controlador.valarriendo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminaveh</servlet-name>
+        <servlet-class>cl.vista.eliminaveh</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>errores</servlet-name>
         <url-pattern>/errores.view</url-pattern>
@@ -31,6 +51,26 @@
     <servlet-mapping>
         <servlet-name>cerrar</servlet-name>
         <url-pattern>/cerrar.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ingarriendo</servlet-name>
+        <url-pattern>/ingarriendo.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>vervehiculosdisp</servlet-name>
+        <url-pattern>/vervehiculosdisp.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ingvehiculo</servlet-name>
+        <url-pattern>/ingvehiculo.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>valarriendo</servlet-name>
+        <url-pattern>/valarriendo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminaveh</servlet-name>
+        <url-pattern>/eliminaveh.view</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
