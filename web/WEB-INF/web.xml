@@ -52,6 +52,14 @@
         <servlet-name>buscarveh</servlet-name>
         <servlet-class>cl.vista.buscarveh</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>monto</servlet-name>
+        <servlet-class>cl.vista.monto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>arr</servlet-name>
+        <servlet-class>cl.vista.arr</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>errores</servlet-name>
         <url-pattern>/errores.view</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>buscarveh</servlet-name>
         <url-pattern>/buscarveh.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>monto</servlet-name>
+        <url-pattern>/monto.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>arr</servlet-name>
+        <url-pattern>/arr</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

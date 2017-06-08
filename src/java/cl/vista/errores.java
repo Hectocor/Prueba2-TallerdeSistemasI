@@ -1,6 +1,7 @@
 
 package cl.vista;
 
+import cl.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,6 +22,10 @@ public class errores extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ArrayList errores = (ArrayList) request.getAttribute("errores");
+        
+        HttpSession sesionOK = request.getSession();
+        Usuario usuario = (Usuario) sesionOK.getAttribute("USUARIO");
+        
         response.setContentType("text/html;charset=UTF-8");
           try (PrintWriter out = response.getWriter()) {
               out.println("<!DOCTYPE html>");
@@ -29,13 +35,24 @@ public class errores extends HttpServlet {
               
               out.println("<h2>Se han encontrado los siguientes errores:</h2>");
               
+              if(usuario != null){
+                  
+                   for(Object error : errores){
+                  out.println("<p>" + error.toString() + "</p>");
+              }
+              out.println("<a href='menu.view'>Volver</a>");
+              out.println("</body>");
+              out.println("</html>");
+              
+              }else{
+              
               for(Object error : errores){
                   out.println("<p>" + error.toString() + "</p>");
               }
               out.println("<a href='index.html'>Volver</a>");
               out.println("</body>");
               out.println("</html>");
-              
+              }
         
         }
     }

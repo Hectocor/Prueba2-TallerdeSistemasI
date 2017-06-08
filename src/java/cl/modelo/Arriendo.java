@@ -74,4 +74,9 @@ public class Arriendo {
     public void setValorDia(int valorDia) {
         this.valorDia = valorDia;
     }
+    
+    public int calculoArriendo(){
+        int calcularArriendo = this.valorDia * this.dias;
+        return calcularArriendo;
+    }
 }

@@ -23,7 +23,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         HttpSession sesionOK = request.getSession();
         Usuario usuario = (Usuario) sesionOK.getAttribute("USUARIO");
         
-        List<Vehiculo> listaVehiculo = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
+        List<Vehiculo> listaVehiculos = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
         String patentes = request.getParameter("patente");
  
         try (PrintWriter out = response.getWriter()) {
@@ -41,10 +41,18 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             } else {
                 out.println("<h1>Buscar Vehiculo </h1>");
                 out.println("<form action='buscarveh.view' method='POST'>");
-                out.println("<tr><td>Patente:</td><td><input type='text' name='patente'"+patentes+"></td>");
-                out.println("<table border=1>");
+                out.println("<tr><td>Patente:</td><td><select name='patente'"+patentes+"></td>");
+                out.println("<option selected value = '1'>Seleccione</option>");
+                
+                for (Vehiculo aux : listaVehiculos){
+                    out.println("<option>"+ aux.getPatente()+"</option>");
+                }
+                out.println("</tr>");
+                out.println("<tr><td>Patente:</td><td><input type='submit' value='Buscar'></td></tr>");
+                
                 
                 if(patentes!=null){
+                    out.println("<table border=1>");
                     out.println("<tr>");
                     out.println("<th>Patente</th>");
                     out.println("<th>Marca</th>");
@@ -53,7 +61,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                     out.println("<th>Año de fabricacion</th>");
                     out.println("<th>Estado</th>");
                     out.println("</tr>");
-                    for (Vehiculo p : listaVehiculo) {
+                    for (Vehiculo p : listaVehiculos) {
                         if(patentes.equals(p.getPatente())){
                             out.println("<tr>");
                             out.println("<td>" + p.getPatente() + "</td>");

@@ -6,6 +6,7 @@ import cl.modelo.Vehiculo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +22,45 @@ public class ingarriendo extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession sesionActiva = request.getSession();
+        Usuario usuario = (Usuario) sesionActiva.getAttribute("USUARIO");
+        String msj = (String) request.getAttribute("msj");
+                ArrayList errores = (ArrayList) request.getAttribute("errores2");
+                
+        String codigo = request.getParameter("codigo");
+        String patenteV = request.getParameter("patenteV");
+        String rutCli = request.getParameter("rutCli");
+        String fecha = request.getParameter("fecha");
+        String strdias = request.getParameter("dias");
+        String strvalorDia = request.getParameter("valorDia");
         
-        Usuario usuario = (Usuario)sesionActiva.getAttribute("USUARIO");
-        ArrayList errores2 = (ArrayList) request.getAttribute("errores2");
+        if (codigo == null) {
+            codigo = "";
+        }
+        if (patenteV == null) {
+            patenteV = "";
+        }
+        if (rutCli == null) {
+            rutCli = "";
+        }
+        if (fecha == null) {
+            fecha = "";
+        }
+        if (strdias == null) {
+            strdias = "";
+        }
+        if (strvalorDia == null) {
+            strvalorDia = "";
+        }
+        
+        
+        if (msj != null) {
+            codigo = "";
+            patenteV = "";
+            rutCli = "";
+            fecha = "";
+            strdias = "";
+            strvalorDia = "";
+        }
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -47,47 +84,53 @@ public class ingarriendo extends HttpServlet {
                 out.println("<legend><b>Datos del vehiculo</b></legend>");
                 out.println("<form action='valarriendo.do' method='post'>");
                 out.println("<table>");
-                String codigo = "", patenteV = "", rutCli = "", fecha = "", strdias = "", strvalorDia = "";
-                out.println("<tr><td>Código</td><td><input type='text' name='codigo' value='" + codigo + "'></td>");
-                out.println("<tr><td>Patente</td><td><select name='patenteV'>");
-                ArrayList<Vehiculo> listaVehiculos = (ArrayList<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
 
+                out.println("<tr><td>Código</td><td><input type='text' name='codigo' value='"+codigo+"'></td>");
+                out.println("<tr><td>Patente</td><td><select name='patenteV'>");
+                
+                List<Vehiculo> listaVehiculos = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
+                out.println("<option selected value='1'>Selecione </option>");
                 for (Vehiculo aux : listaVehiculos){
                     out.println("<option>"+ aux.getPatente()+"</option>");
                 }
                 
-                out.println("</select></td>");
+                out.println("</select></td></tr>");
                 out.println("<tr><td>Rut Cliente</td><td><select name='rutCli'>");
                
-                ArrayList<Cliente> listaClientes = (ArrayList<Cliente>) getServletContext().getAttribute("listaClientes");
-
-                for (Cliente aux : listaClientes){
-                    out.println("<option value=>"+ aux.getRut()+"</option>");
+                List<Cliente> listaClientes = (List<Cliente>) getServletContext().getAttribute("listaClientes");
+                out.println("<option selected value='1'>Selecione </option>");
+                for(Cliente aux2 : listaClientes){
+                    out.println("<option value>"+ aux2.getRut()+"</option>");
                 }
  
-                out.println("</select></td>");
-                out.println("<tr><td>Fecha</td><td><input type='text' name='fecha' value='" + fecha + "'></td>");
-                out.println("<tr><td>Cantidad de dias</td><td><input type='text' name='dias' value='" + strdias + "'></td>");
-                out.println("<tr><td>Valor por dia</td><td><input type='text' name='valorDia' value='" + strvalorDia + "'></td>");
-                out.println("<tr><td colspan='2' align='right'><input type='submit' value='Agregar'></td>");
+                out.println("</select></td></tr>");
+                out.println("<tr><td>Fecha</td><td><input type='date' name='fecha' value='"+fecha+"'></td></tr>");
+                out.println("<tr><td>Cantidad de días</td><td><input type='text' name='dias' value='"+strdias+"'></td></tr>");
+                out.println("<tr><td>Valor por día</td><td><input type='text' name='valorDia' value='"+strvalorDia+"'></td></tr>");
+                out.println("<tr><td colspan='2' align='right'><input type='submit' value='Agregar'></td></tr>");
                 out.println("</table>");
+                out.println("<br/>");
                 
-                if (errores2.isEmpty()){
-                    
+                 
+                if (errores != null) {
                     out.println("<table>");
-                    for (Object errores : errores2) {
+                    for (int i = 0; i < errores.size(); i++) {
                         out.println("<tr>");
-                        out.println("<td align='left'>" + errores.toString() + "</td>");
+                        out.println("<td align='left'>" + errores.get(i) + "</td>");
                         out.println("</tr>");
                     }
                     out.println("</table>");
                 }
-
-                out.println("<br/>");
+                if (errores == null && msj != null) {
+                    out.println("<font>" + msj + "</font>");
+                }
+                
                 out.println("<a href='menu.view'>Volver</a>");
                 out.println("</form>");
                 out.println("</fieldset>");
                 out.println("<br/><br/>");
+               
+                
             }
             out.println("</center>");
             out.println("</body>");

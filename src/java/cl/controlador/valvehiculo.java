@@ -1,9 +1,8 @@
 package cl.controlador;
 
-
-
 import cl.modelo.Vehiculo;
 import java.io.IOException;
+import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -28,7 +27,7 @@ public class valvehiculo extends HttpServlet {
         int intAnyo = 0;
         
         ArrayList errores = new ArrayList();
-        
+        //Agrega los errores a la lista
         if(Patente.isEmpty()){
             errores.add("Ingrese datos, Campo Patente vacío");
         }
@@ -44,7 +43,7 @@ public class valvehiculo extends HttpServlet {
         if(Estado.isEmpty()){
             errores.add("Ingrese datos, Campo Estado vacío");
         }
-        
+        //Verifica que rl contenido de año sea numerico
         try {
             intAnyo = Integer.parseInt(request.getParameter("anio"));
         } catch (NumberFormatException e) {
@@ -54,7 +53,7 @@ public class valvehiculo extends HttpServlet {
         
         if(errores.isEmpty()){
 
-            
+            //crea un objeto vehiculo y lo agrega a la lista de vehiculos
             Vehiculo vehiculo = new Vehiculo(Patente, Marca, Modelo, Color, intAnyo, Estado);
             List<Vehiculo> listaVehiculos = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
             
@@ -67,9 +66,16 @@ public class valvehiculo extends HttpServlet {
             rd.forward(request, response);
             
         }else{
+            
+            //Dejar en al ambito de solicitud los errores
             request.setAttribute("errores", errores);
-            RequestDispatcher rd = request.getRequestDispatcher("errores.view");
-            rd.forward(request, response);
+            String msg = "Se han encontrado los siguientes errores: ";
+            System.out.println(msg);
+            request.setAttribute("msg", msg);
+            //Redireccionar a otro componente (pasar el control)
+            RequestDispatcher vista = request.getRequestDispatcher("ingvehiculo.view");
+            vista.forward(request, response);
+            
         }
     }
 
