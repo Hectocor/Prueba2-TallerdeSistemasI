@@ -75,9 +75,17 @@ public class ingvehiculo extends HttpServlet {
             out.println("<tr><td>Marca:</td><td><input type='text' name='marca' "+Marca+"></td>");
             out.println("<tr><td>Modelo:</td><td><input type='text' name='modelo' "+Modelo+"></td>");
             out.println("<tr><td>Color:</td><td><input type='text' name='color' "+Color+"></td>");
-            out.println("<tr><td>Año de fabricacion:</td><td><input type='text' name='anio' "+Año+"></td>");
-            out.println("<tr><td>Estado:</td><td><input type='text' name='estado' "+Estado+"></td>");
-            out.println("</td>");
+            out.println("<tr><td>Año de fabricacion:</td><td><input type='number' name='anio' min='1950' max='2017'></td>");
+            out.println("<tr><td>Estado:</td><td><select name='estado'>");
+            
+            String[] arregloEstado = {"DISPONIBLE", "NO DISPONIBLE"};
+            
+                for (String var : arregloEstado){
+                    out.println("<option>"+var.toString()+"</option>");
+                }
+                
+            out.println("</select></td>");
+            out.println("<br>");
             out.println("</tr>");
             out.println("<tr><td><input type='submit' value='Ingresar vehiculo nuevo'></td>");
             out.println("</table>");

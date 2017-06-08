@@ -54,7 +54,13 @@ public class eliminaveh extends HttpServlet {
                     out.println("<form action='valeliveh.do' method='POST'>");
                     out.println("<table>");
                     out.println("<tr>");
-                    out.println("<td>Ingrese la patente del vehiculo que desea eliminar</td><td><input type='text' name='patente'"+Patente+"></td>");
+                    out.println("<td>Ingrese la patente del vehiculo que desea eliminar</td><td><select type='text' name='patente'>");
+                    out.println("<option selected>Seleccione</option>");
+                    for(Vehiculo aux : listaVehiculos){
+                       out.println("<option>"+aux.getPatente()+"</option>");
+                    }
+                    
+                    out.println("</select></td></br>");
                     out.println("<input type='submit' value='Eliminar Vehiculo'>");
                     out.println("</tr>");
                     out.println("</table>");

@@ -53,7 +53,7 @@ public class ingarriendo extends HttpServlet {
                 ArrayList<Vehiculo> listaVehiculos = (ArrayList<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
 
                 for (Vehiculo aux : listaVehiculos){
-                    out.println("<option value=>"+ aux.getPatente()+"</option>");
+                    out.println("<option>"+ aux.getPatente()+"</option>");
                 }
                 
                 out.println("</select></td>");
