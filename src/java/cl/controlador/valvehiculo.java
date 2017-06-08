@@ -1,8 +1,11 @@
 package cl.controlador;
 
+
+
+import cl.modelo.Vehiculo;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,13 +18,17 @@ public class valvehiculo extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String Patente = request.getParameter("patente");
         String Marca = request.getParameter("marca");
         String Modelo = request.getParameter("modelo");
         String Color = request.getParameter("color");
-        String Ano = request.getParameter("anio");
         String Estado = request.getParameter("estado");
+        
+        int intAnyo = 0;
+        
         ArrayList errores = new ArrayList();
+        
         if(Patente.isEmpty()){
             errores.add("Ingrese datos, Campo Patente vacío");
         }
@@ -34,17 +41,31 @@ public class valvehiculo extends HttpServlet {
         if(Color.isEmpty()){
             errores.add("Ingrese datos, Campo Color vacío");
         }
-        if(Ano.isEmpty()){
-            errores.add("Ingrese datos, Campo Año vacío");
-        }
         if(Estado.isEmpty()){
             errores.add("Ingrese datos, Campo Estado vacío");
         }
+        
+        try {
+            intAnyo = Integer.parseInt(request.getParameter("anio"));
+        } catch (NumberFormatException e) {
+           errores.add("ERROR, Solo ingresar datos numéricos para cantidad año");
+        }
+         
+        
         if(errores.isEmpty()){
+
+            
+            Vehiculo vehiculo = new Vehiculo(Patente, Marca, Modelo, Color, intAnyo, Estado);
+            List<Vehiculo> listaVehiculos = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
+            
+            listaVehiculos.add(vehiculo);
+            
+            getServletContext().setAttribute("listaVehiculos", listaVehiculos);
             String msg = "Vehiculo ingresado correctamente";
             request.setAttribute("msg", msg);
             RequestDispatcher rd = request.getRequestDispatcher("ingvehiculo.view");
             rd.forward(request, response);
+            
         }else{
             request.setAttribute("errores", errores);
             RequestDispatcher rd = request.getRequestDispatcher("errores.view");

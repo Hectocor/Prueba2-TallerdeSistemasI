@@ -1,4 +1,4 @@
-package cl.controlador;
+package cl.vista;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,13 +14,18 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "buscarveh", urlPatterns = {"/buscarveh.view"})
 public class buscarveh extends HttpServlet {
+    
 protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    
         response.setContentType("text/html;charset=UTF-8");
+        
         HttpSession sesionOK = request.getSession();
         Usuario usuario = (Usuario) sesionOK.getAttribute("USUARIO");
+        
         List<Vehiculo> listaVehiculo = (List<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
-        String patentes=request.getParameter("patente");;
+        String patentes = request.getParameter("patente");
+ 
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -30,6 +35,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             out.println("<body>");
             out.println("<center>");
             if (usuario == null) {
+                
                 out.println("<h1> Acceso Restringido</h1>");
                 out.println("<a href = 'index.html'> Volver </a>");
             } else {
@@ -37,6 +43,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                 out.println("<form action='buscarveh.view' method='POST'>");
                 out.println("<tr><td>Patente:</td><td><input type='text' name='patente'"+patentes+"></td>");
                 out.println("<table border=1>");
+                
                 if(patentes!=null){
                     out.println("<tr>");
                     out.println("<th>Patente</th>");
@@ -61,6 +68,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                     }
                 }
                 out.println("</table>");
+                out.println("</form>");
                 out.println("<br/>");
                 out.println("<a href ='menu.view'>Volver</a>");
             }
@@ -70,6 +78,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         }
     }
 
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -82,9 +91,10 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         processRequest(request, response);
     }
 
+    
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }

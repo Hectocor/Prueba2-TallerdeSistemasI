@@ -6,7 +6,6 @@ import cl.modelo.Vehiculo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,10 +34,14 @@ public class ingarriendo extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<center>");
+            
             if (usuario == null) {
+                
                 out.println("<h1> Acceso Restringido</h1>");
                 out.println("<a href = 'index.html'> Volver </a>");
+                
             } else {
+                
                 out.println("<h1>Solicitar arriendo</h1>");
                 out.println("<fieldset style='width: 400px'>");
                 out.println("<legend><b>Datos del vehiculo</b></legend>");
@@ -48,24 +51,20 @@ public class ingarriendo extends HttpServlet {
                 out.println("<tr><td>Código</td><td><input type='text' name='codigo' value='" + codigo + "'></td>");
                 out.println("<tr><td>Patente</td><td><select name='patenteV'>");
                 ArrayList<Vehiculo> listaVehiculos = (ArrayList<Vehiculo>) getServletContext().getAttribute("listaVehiculos");
-                
-                
+
                 for (Vehiculo aux : listaVehiculos){
                     out.println("<option value=>"+ aux.getPatente()+"</option>");
                 }
-                
                 
                 out.println("</select></td>");
                 out.println("<tr><td>Rut Cliente</td><td><select name='rutCli'>");
                
                 ArrayList<Cliente> listaClientes = (ArrayList<Cliente>) getServletContext().getAttribute("listaClientes");
-                
-                
+
                 for (Cliente aux : listaClientes){
                     out.println("<option value=>"+ aux.getRut()+"</option>");
                 }
-                
-                
+ 
                 out.println("</select></td>");
                 out.println("<tr><td>Fecha</td><td><input type='text' name='fecha' value='" + fecha + "'></td>");
                 out.println("<tr><td>Cantidad de dias</td><td><input type='text' name='dias' value='" + strdias + "'></td>");
